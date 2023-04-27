@@ -37,6 +37,16 @@ void crearPerfil(Jugador *player, HashMap *map, List *nombres, char *nombre) {
   insertMap(map, player->nombre, player);
 }
 
+void mostrarPerfil(char *nombre, HashMap *map) {
+  printf("\n");
+  puts(BARRA);
+  Pair *casilla = searchMap(map, nombre);
+  if (casilla == NULL) {
+    printf("El jugador ingresado no existe\n");
+    return;
+  } 
+}
+
 int main(){
   HashMap *map = createMap(10000);
   char nombre[31];
