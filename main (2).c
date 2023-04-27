@@ -107,6 +107,15 @@ void eliminarItem(HashMap *map){
     return;
   }
   else{
+    char clave2[31];
+    printf("Ingrese el nombre del item a eliminar\n");
+    scanf(" %[^\n]s", clave2);
+    for(char* a = firstList(((Jugador *)casilla->value)->inventario) ; a != NULL ; a = nextList(((Jugador *)casilla->value)->inventario)){
+      if(strcmp(clave2, a) == 0){
+        popCurrent(((Jugador *)casilla->value)->inventario);
+        ((Jugador *)casilla->value)->items--;
+      }
+    }
   }
 }
 
