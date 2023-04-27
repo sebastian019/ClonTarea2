@@ -43,6 +43,7 @@ void mostrarItems(Pair *casilla) {
 
   if (firstList(node) == NULL) {
     printf("No tiene\n");
+    return;
   }
   for (char *a = firstList(node); a != NULL; a = nextList(node)) {
     printf("Item %hu: %s\n", cont, a);
@@ -64,6 +65,28 @@ void mostrarPerfil(char *nombre, HashMap *map) {
       printf("El inventario esta vacío\n");
     } else {
       mostrarItems(casilla);
+    }
+  }
+}
+
+void agregarItem(HashMap *map){
+  char clave[31], aux[31];
+  printf("Ingrese el nombre del jugador\n");
+  scanf(" %[^\n]s", clave);
+  Pair *casilla = searchMap(map,clave);
+  if(casilla == NULL){
+    printf("El jugador ingresado no existe\n");
+    return;
+  }
+  else{
+    printf("Ingrese el nombre del item\n");
+    scanf(" %[^\n]s", aux);
+    if(firstList(((Jugador*)casilla->value)->inventario) == NULL){
+      ((Jugador*)casilla->value)->inventario = createList();
+      inventario* i = (inventario *) malloc (sizeof(inventario));
+      strcpy(i->item,aux);
+      pushBack(((Jugador *)casilla->value)->inventario,i);
+      ((Jugador *)casilla->value)->items++;
     }
   }
 }
