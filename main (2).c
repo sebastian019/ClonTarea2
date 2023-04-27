@@ -65,11 +65,17 @@ int main(){
       }
       // crearPerfil(player, map, nombres, nombre);
     }
-
     if (numIngresado == 2) {
+      printf("Ingrese el nombre del jugador\n");
+      scanf(" %[^\n]s", nombre);
+      //mostrarPerfil(nombre, map);
     }
     if (numIngresado == 3) {
-      
+      printf("Ingrese el nombre del jugador\n");
+      scanf(" %[^\n]s", nombre);
+      printf("Ingrese el nombre del item\n");
+      scanf(" %[^\n]s", item);
+      //agregarItem(map,nombre,item);
     }
     if (numIngresado == 4) {
 
