@@ -88,10 +88,14 @@ int main(){
       //agregarPuntos(map,nombre);
     }
     if (numIngresado == 6) {
-
+      printf("Ingrese el nombre del item\n");
+      scanf(" %[^\n]s", nombre);
+      //mostrarJugadoresItemEsp(map, nombres, nombre);
     }
     if (numIngresado == 7) {
-
+      printf("Ingrese el nombre del jugador\n");
+      scanf(" %[^\n]s", nombre);
+      //deshacer(map,nombre);
     }
     if (numIngresado == 8) {
 
