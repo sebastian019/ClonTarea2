@@ -31,6 +31,12 @@ void mostrarMenu() {
   puts(BARRA);
 }
 
+void crearPerfil(Jugador *player, HashMap *map, List *nombres, char *nombre) {
+  strcpy(player->nombre, nombre);
+  player->puntos = 0;
+  insertMap(map, player->nombre, player);
+}
+
 int main(){
   HashMap *map = createMap(10000);
   char nombre[31];
@@ -63,7 +69,7 @@ int main(){
       scanf(" %[^\n]", nombre);
       largoName = strlen(nombre);
       }
-      // crearPerfil(player, map, nombres, nombre);
+      crearPerfil(player, map, nombres, nombre);
     }
     if (numIngresado == 2) {
       printf("Ingrese el nombre del jugador\n");
