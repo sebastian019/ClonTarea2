@@ -133,6 +133,26 @@ void agregarPuntos(HashMap *map, char * nombre) {
   }
 }
 
+void mostrarJugadoresItemEsp(HashMap *map, List *nombres, char *nombre) {
+  int cont = 0;
+
+  printf("Jugadores con el item %s: \n", nombre);
+  for (char *a = firstList(nombres); a != NULL; a = nextList(nombres)) {
+    long key = hash(a, map->capacity);
+    for (char *b = firstList(((Jugador *)map->buckets[key]->value)->inventario);
+         b != NULL;
+         b = nextList(((Jugador *)map->buckets[key]->value)->inventario)) {
+      if (strcmp(b, nombre) == 0) {
+        printf("[ %s ]\n", a);
+        cont++;
+        break;
+      }
+    }
+  }
+  if (cont == 0)
+    printf("No se encontraron jugadores con ese item\n");
+}
+
 int main(){
   HashMap *map = createMap(10000);
   char nombre[31];
