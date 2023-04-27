@@ -88,6 +88,12 @@ void agregarItem(HashMap *map){
       pushBack(((Jugador *)casilla->value)->inventario,i);
       ((Jugador *)casilla->value)->items++;
     }
+    else{
+      inventario* i = (inventario *) malloc (sizeof(inventario));
+      strcpy(i->item,aux);
+      pushBack(((Jugador *)casilla->value)->inventario,i);
+      ((Jugador *)casilla->value)->items++;
+    }
   }
 }
 
