@@ -18,6 +18,19 @@ typedef struct Jugador{
   List *inventario;
 } Jugador;
 
+void mostrarMenu() {
+  puts(BARRA);
+  printf("                   SEBA´S ADVENTURE 64\n");
+  puts(BARRA);
+  printf("\nSeleccione una opción:\n\n1. Crear perfil de jugador\n2. Mostrar "
+         "perfil de jugador\n3. Agregar ítem a jugador\n4. Eliminar ítem a "
+         "jugador\n5. Agregar puntos de habilidad al jugador\n6. Mostrar "
+         "jugadores con un ítem específico\n7. Deshacer última acción del "
+         "jugador\n8. Exportar datos de jugadores a archivo de texto\n9. "
+         "Cargar datos de jugadores desde un archivo de texto\n0. Salir\n\n");
+  puts(BARRA);
+}
+
 int main(){
   HashMap *map = createMap(10000);
   char nombre[31];
@@ -26,6 +39,7 @@ int main(){
   int largoName;
 
   while (true) {
+    mostrarMenu();
 
     scanf("%hu", &numIngresado);
     while (numIngresado > 9 || numIngresado < 0) {
@@ -40,6 +54,16 @@ int main(){
       return 0;
     }
     if (numIngresado == 1) {
+      Jugador *player = (Jugador *)malloc(sizeof(Jugador));
+      printf("Ingrese el nombre del jugador\n");
+      scanf(" %[^\n]", nombre);
+      largoName = strlen(nombre);
+      while (largoName > 31 || largoName < 1) {
+      printf("Ingrese un nombre válido (hasta 30 caracteres)\n");
+      scanf(" %[^\n]", nombre);
+      largoName = strlen(nombre);
+      }
+      // crearPerfil(player, map, nombres, nombre);
     }
 
     if (numIngresado == 2) {
