@@ -37,6 +37,15 @@ void crearPerfil(Jugador *player, HashMap *map, List *nombres, char *nombre) {
   insertMap(map, player->nombre, player);
 }
 
+void mostrarItems(Pair *casilla) {
+  List *node = ((Jugador *)casilla->value)->inventario;
+  unsigned short cont = 1;
+
+  if (firstList(node) == NULL) {
+    printf("No tiene\n");
+  }
+}
+
 void mostrarPerfil(char *nombre, HashMap *map) {
   printf("\n");
   puts(BARRA);
@@ -50,7 +59,7 @@ void mostrarPerfil(char *nombre, HashMap *map) {
     if (((Jugador *)casilla->value)->items == 0) {
       printf("El inventario esta vacío\n");
     } else {
-      //mostrarItems(casilla);
+      mostrarItems(casilla);
     }
   }
 }
