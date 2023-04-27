@@ -97,6 +97,19 @@ void agregarItem(HashMap *map){
   }
 }
 
+void eliminarItem(HashMap *map){
+  char clave[31];
+  printf("Ingrese el nombre del jugador\n");
+  scanf(" %[^\n]s", clave);
+  Pair *casilla = searchMap(map, clave);
+  if(casilla == NULL){
+    printf("El jugador ingresado no existe\n");
+    return;
+  }
+  else{
+  }
+}
+
 int main(){
   HashMap *map = createMap(10000);
   char nombre[31];
@@ -134,7 +147,7 @@ int main(){
     if (numIngresado == 2) {
       printf("Ingrese el nombre del jugador\n");
       scanf(" %[^\n]s", nombre);
-      //mostrarPerfil(nombre, map);
+      mostrarPerfil(nombre, map);
     }
     if (numIngresado == 3) {
       printf("Ingrese el nombre del jugador\n");
