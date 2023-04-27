@@ -119,6 +119,20 @@ void eliminarItem(HashMap *map){
   }
 }
 
+void agregarPuntos(HashMap *map, char * nombre) {
+  Pair *casilla = searchMap(map, nombre);
+
+  if (casilla == NULL) {
+    printf("El jugador ingresado no existe\n");
+    return;
+  } else {
+    unsigned short puntos;
+    printf("Ingrese la cantidad de puntos\n");
+    scanf("%hu", &puntos);
+    ((Jugador *)casilla->value)->puntos += puntos;
+  }
+}
+
 int main(){
   HashMap *map = createMap(10000);
   char nombre[31];
