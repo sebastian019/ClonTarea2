@@ -44,6 +44,10 @@ void mostrarItems(Pair *casilla) {
   if (firstList(node) == NULL) {
     printf("No tiene\n");
   }
+  for (char *a = firstList(node); a != NULL; a = nextList(node)) {
+    printf("Item %hu: %s\n", cont, a);
+    cont++;
+  }
 }
 
 void mostrarPerfil(char *nombre, HashMap *map) {
