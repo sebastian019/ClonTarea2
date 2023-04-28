@@ -159,6 +159,24 @@ void mostrarJugadoresItemEsp(HashMap *map, List *nombres, char *nombre) {
     printf("No se encontraron jugadores con ese item\n");
 }
 
+void deshacer(HashMap *map, char * nombre){
+  Pair *casilla = searchMap(map, nombre);
+  if (casilla == NULL) {
+    printf("El jugador ingresado no existe\n");
+    return;
+  } else if(((Jugador *)casilla->value)->historial!=NULL){
+    // para crear la copia y ponerla en historial
+    Jugador *version_anterior =(Jugador*)malloc(sizeof(Jugador)); 
+    Jugador *historial = ((Jugador *)casilla->value)->historial; // reserva memoria para historial
+    memcpy(version_anterior, historial, sizeof(Jugador)); // copia el objeto Jugador
+    casilla->value = version_anterior;
+  }
+  else{
+    printf("no hay nada que deshacer\n");
+  }
+}
+
+
 const char *get_csv_field (char * tmp, int k) {
     int open_mark = 0;
     char* ret=(char*) malloc (100*sizeof(char));
