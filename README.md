@@ -16,12 +16,7 @@ Funciones Correctas: todo en casos promedio
 Herramientas: Repl.it, github.
 
 PROBLEMAS U OBSERVACIONES:
-1. Al importar el archivo e ingresar la opcion 4
-  Para mostrar todos los datos de todos los pacientes,
-  El medico del ultimo paciente, no lee su ultimo caracter,
-  Para solucionar este percance, agregamos un espacio justo 
-  Al final del archivo, de esta manera ya no ocurre este error.
-2. Las funciones quedaron en el main.
+1. Las funciones quedaron en el main.
 
 Trabajo en equipo:
 En este trabajo nuestro equipo se mostro responsable y dedicado. Pero unos aspectos a mejorar seria mayor concentracion a la hora de trabajar(sugerencia)
@@ -34,9 +29,9 @@ Nehemias Leiva: Ayudo a guiar al equipo y fue el que mas aporto al equipo. Aspec
 
 Matias Castro: Aporto con el codigo y corrección de errores, algo a mejorar seria la concentracion, ya que se distrae mucho.
 
-Adolfo Cordero: Buen aporte al equipo con buen analisis y correcciónes de codigo. Aspectos a mejorar serian mostrar más presencia y ser mas participativo a la hora de trabajar en equipo.
+Adolfo Cordero: Buen aporte al equipo con buen analisis y correcciónes de codigo. Aspectos a mejorar serian.
 
-Sebastián Gatica: Organizaba las reuniones y presenta buena disposicion al trabajar, ademas de aportar en algunas funciones y archivos, Aspectos a mejorar serian la concentracion y un poco mas acertivo.
+Sebastián Gatica: Organizaba las reuniones y presenta buena disposicion al trabajar, ademas de aportar en algunas funciones y archivos, Aspectos a mejorar serian la concentracion.
 
 
 TABLA DE PUNTAJES
