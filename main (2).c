@@ -31,6 +31,12 @@ void mostrarMenu() {
   puts(BARRA);
 }
 
+void listaNombres(List *nombres, char *nombre) { // MI COMMIT 4 XD
+  inventario *i = (inventario *)malloc(sizeof(inventario));
+  strcpy(i->item, nombre);
+  pushBack(nombres, i);
+}
+
 void crearPerfil(Jugador *player, HashMap *map, List *nombres, char *nombre) {
   strcpy(player->nombre, nombre);
   player->puntos = 0;
@@ -157,6 +163,7 @@ int main(){
   HashMap *map = createMap(10000);
   char nombre[31];
   char item[31];
+  List *nombres = createList();
   unsigned short numIngresado;
   int largoName;
 
