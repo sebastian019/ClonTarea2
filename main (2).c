@@ -159,6 +159,24 @@ void mostrarJugadoresItemEsp(HashMap *map, List *nombres, char *nombre) {
     printf("No se encontraron jugadores con ese item\n");
 }
 
+void exportar(List *nombres,HashMap *map,FILE *archivo){
+  fprintf(archivo, "Nombre,Puntos,Cantidad de Items,Items\n");
+  for (char *a = firstList(nombres); a != NULL; a = nextList(nombres)){
+    int key = hash(a, map->capacity);
+    fprintf(archivo, "%s,%u,%u", ((Jugador*)map->buckets[key]->value)->nombre,((Jugador*)map->buckets[key]->value)->puntos, ((Jugador*)map->buckets[key]->value)->items);
+    for (char *b = firstList(((Jugador *)map->buckets[key]->value)->inventario) ; b != NULL; b = nextList(((Jugador *)map->buckets[key]->value)->inventario)){
+      fprintf(archivo, ",%s", b);
+      if(nextList(((Jugador*)map->buckets[key]->value)->inventario) != NULL){
+        fprintf(archivo,", ");
+      }
+      else{
+        fprintf(archivo, "\n");
+      }
+    }
+  }
+  fclose(archivo);
+}
+
 int main(){
   HashMap *map = createMap(10000);
   char nombre[31];
@@ -227,10 +245,27 @@ int main(){
       //deshacer(map,nombre);
     }
     if (numIngresado == 8) {
+      printf("Escriba el nombre del archivo\n");
+      scanf(" %[^\n]", nombreArchivo);
+      setbuf(stdout, NULL);
 
+      FILE *archivo = fopen(nombreArchivo,"rt");
+      if (archivo == NULL) {
+        printf("* Error al abrir el archivo.\n");
+      } else{
+         //importar();
+      }
     }
     if (numIngresado == 9) {
-
+      if(map->buckets != NULL){
+        printf("Escriba el nombre del archivo\n");
+        scanf(" %[^\n]", nombreArchivo);
+        FILE* archivo = fopen(nombreArchivo, "a");
+        exportar(nombres,map, archivo);
+      } 
+      else {
+        printf("* No hay datos exportables\n");
+      }
     } 
 
   }
