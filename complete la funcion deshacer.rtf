@@ -1,0 +1,16 @@
+void deshacer(HashMap *map, char * nombre){
+  Pair *casilla = searchMap(map, nombre);
+  if (casilla == NULL) {
+    printf("El jugador ingresado no existe\n");
+    return;
+  } else if(((Jugador *)casilla->value)->historial!=NULL){
+    // para crear la copia y ponerla en historial
+    Jugador *version_anterior =(Jugador*)malloc(sizeof(Jugador)); 
+    Jugador *historial = ((Jugador *)casilla->value)->historial; // reserva memoria para historial
+    memcpy(version_anterior, historial, sizeof(Jugador)); // copia el objeto Jugador
+    casilla->value = version_anterior;
+  }
+  else{
+    printf("no hay nada que deshacer\n");
+  }
+}
