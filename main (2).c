@@ -32,8 +32,8 @@ void mostrarMenu() {
          "perfil de jugador\n3. Agregar ítem a jugador\n4. Eliminar ítem a "
          "jugador\n5. Agregar puntos de habilidad al jugador\n6. Mostrar "
          "jugadores con un ítem específico\n7. Deshacer última acción del "
-         "jugador\n8. Exportar datos de jugadores a archivo de texto\n9. "
-         "Cargar datos de jugadores desde un archivo de texto\n0. Salir\n\n");
+         "jugador\n8. Cargar datos de jugadores desde un archivo de texto \n9. "
+         "Exportar datos de jugadores a archivo de texto\n0. Salir\n\n");
   puts(BARRA);
 }
 
@@ -87,7 +87,7 @@ void agregarItem(HashMap *map, char *nombre, char *item) {
     printf("El jugador ingresado no existe\n");
     return;
   } else {
-      
+      // copio los datos del jugador en su historial
       Jugador *aCopiar = ((Jugador *)casilla->value); 
       Jugador *historial = (Jugador*)malloc(sizeof(Jugador));
       memcpy(historial, aCopiar, sizeof(Jugador));
@@ -121,7 +121,7 @@ void eliminarItem(HashMap *map, char * nombre) {
     printf("El jugador ingresado no existe\n");
     return;
   } else {
-    
+    // copio los datos del jugador en su historial
     Jugador *aCopiar = ((Jugador *)casilla->value); 
     Jugador *historial = (Jugador*)malloc(sizeof(Jugador));
     memcpy(historial, aCopiar, sizeof(Jugador));
@@ -155,7 +155,7 @@ void agregarPuntos(HashMap *map, char * nombre) {
     printf("El jugador ingresado no existe\n");
     return;
   } else {
-      
+      // copio los datos del jugador en su historial
       Jugador *aCopiar = ((Jugador *)casilla->value); 
       Jugador *historial = (Jugador*)malloc(sizeof(Jugador));
       memcpy(historial, aCopiar, sizeof(Jugador)); 
@@ -168,7 +168,7 @@ void agregarPuntos(HashMap *map, char * nombre) {
         pushFront(historial->inventario,aux2);
         item=nextList(aCopiar->inventario); 
       }
-    //
+    /////////////////
     unsigned short puntos;
     printf("Ingrese la cantidad de puntos\n");
     scanf("%hu", &puntos);
@@ -331,27 +331,27 @@ int main(){
       scanf(" %[^\n]s", nombre);
       printf("Ingrese el nombre del item\n");
       scanf(" %[^\n]s", item);
-      //agregarItem(map,nombre,item);
+      agregarItem(map,nombre,item);
     }
     if (numIngresado == 4) {
       printf("Ingrese el nombre del jugador\n");
       scanf(" %[^\n]s", nombre);
-      //eliminarItem(map,nombre);
+      eliminarItem(map,nombre);
     }
     if (numIngresado == 5) {
       printf("Ingrese el nombre del jugador\n");
       scanf(" %[^\n]s", nombre);
-      //agregarPuntos(map,nombre);
+      agregarPuntos(map,nombre);
     }
     if (numIngresado == 6) {
       printf("Ingrese el nombre del item\n");
       scanf(" %[^\n]s", nombre);
-      //mostrarJugadoresItemEsp(map, nombres, nombre);
+      mostrarJugadoresItemEsp(map, nombres, nombre);
     }
     if (numIngresado == 7) {
       printf("Ingrese el nombre del jugador\n");
       scanf(" %[^\n]s", nombre);
-      //deshacer(map,nombre);
+      deshacer(map,nombre);
     }
     if (numIngresado == 8) {
       printf("Escriba el nombre del archivo\n");
@@ -362,7 +362,7 @@ int main(){
       if (archivo == NULL) {
         printf("* Error al abrir el archivo.\n");
       } else{
-         //importar();
+        importar(map, archivo,nombres);
       }
     }
     if (numIngresado == 9) {
