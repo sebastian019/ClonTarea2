@@ -159,6 +159,21 @@ void mostrarJugadoresItemEsp(HashMap *map, List *nombres, char *nombre) {
     printf("No se encontraron jugadores con ese item\n");
 }
 
+void importar(HashMap *map,FILE *archivo){
+  char linea[1300];
+  char *aux;
+  int i, edadInt;
+fgets(linea, 1024, archivo);
+  while(fgets(linea, 1024, archivo) != NULL){ 
+    Jugador* p = (Jugador*) malloc(sizeof(Jugador));
+    p->inventario = createList();
+    for(i = 0 ; i < 4 ; i++){
+        aux = get_csv_field(linea, i);
+    }
+  }
+  fclose(archivo);
+}
+
 void exportar(List *nombres,HashMap *map,FILE *archivo){
   fprintf(archivo, "Nombre,Puntos,Cantidad de Items,Items\n");
   for (char *a = firstList(nombres); a != NULL; a = nextList(nombres)){
