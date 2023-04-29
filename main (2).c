@@ -68,12 +68,14 @@ void mostrarPerfil(char *nombre, HashMap *map) {
   printf("\n");
   puts(BARRA);
   Pair *casilla = searchMap(map, nombre);
+  
   if (casilla == NULL) {
     printf("El jugador ingresado no existe\n");
     return;
   }
-  else { 
+  else {
     printf("Nombre: %s\nPuntos: %hu\nItems: %i\n", ((Jugador *)casilla->value)->nombre,((Jugador *)casilla->value)->puntos, ((Jugador *)casilla->value)->items);
+    
     if (((Jugador *)casilla->value)->items == 0) {
       printf("El inventario esta vacío\n");
     } else {
