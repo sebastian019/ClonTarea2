@@ -43,10 +43,11 @@ void listaNombres(List *nombres, char *nombre) {
   pushBack(nombres, i);
 }
 
-void crearPerfil(Jugador *player, HashMap *map, List *nombres, char *nombre) {
+void crearPerfil(Jugador *player, HashMap *map, List *nombres, char *nombre) {//Funcion que recibe como argumentos principales(ademas del struct y el map) el nombre ingresado por el usuario y 
   strcpy(player->nombre, nombre);
   player->puntos = 0;
   insertMap(map, player->nombre, player);
+  listaNombres(nombres, nombre);
 }
 
 void mostrarItems(Pair *casilla) {
