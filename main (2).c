@@ -253,16 +253,38 @@ const char *get_csv_field (char * tmp, int k) {
     return NULL;
 }
 
-void importar(HashMap *map,FILE *archivo){
+void importar(HashMap *map,FILE *archivo,List *nombres){
   char linea[1300];
   char *aux;
   int i, edadInt;
-fgets(linea, 1024, archivo);
-  while(fgets(linea, 1024, archivo) != NULL){ 
+  int aux2;
+fgets(linea, 1024, archivo); //Se lee la primera linea por separado ya que no se pretende guardar su valor.
+  
+  while(fgets(linea, 1024, archivo) != NULL){ //Se leen todas las lineas en orden
     Jugador* p = (Jugador*) malloc(sizeof(Jugador));
     p->inventario = createList();
+    
     for(i = 0 ; i < 4 ; i++){
-        aux = get_csv_field(linea, i);
+      aux = (char *)get_csv_field(linea, i); //aux se convierte en la linea de caracteres i-esima para rellenar el valor correspondiente.
+      if(i == 0){
+        strcpy(p->nombre, aux);
+        listaNombres(nombres, aux);
+      }
+      if(i == 1){
+        p->puntos = atol(aux);
+      }
+      if(i == 2){
+        aux2 = atol(aux);
+        insertMap(map, p->nombre, p);
+      }
+      if(i == 3){
+        for (int k = 0 ; k < aux2; k++){
+          eliminarSOH(aux);
+          agregarItem(map, p->nombre, aux);
+          i++;
+          aux = (char *)get_csv_field(linea, i);
+        }
+      }
     }
   }
   fclose(archivo);
