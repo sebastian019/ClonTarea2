@@ -71,6 +71,7 @@ void mostrarItems(Pair *casilla) {//Funcion que recibe el nodo encontrado en mos
 void mostrarPerfil(char *nombre, HashMap *map) {//Se encarga de Mostrar todos los elementos de el jugador ingreado por el usuario.
   printf("\n");
   puts(BARRA);
+  printf("Perfil de jugador:\n");
   Pair *casilla = searchMap(map, nombre);
   
   if (casilla == NULL) {//Validacion de que existe el jugador
@@ -123,7 +124,6 @@ void agregarItem(HashMap *map, char *nombre, char *item) {
   strcpy(i->item, item); //Se ingresa el valor del argumento item dentro del struct local para luego ingresarlo a la lista a traves de un pushBack. Finalmente se incrementa la cantidad del elemento Items(no confundir con la lista).
   pushBack(((Jugador *)casilla->value)->inventario, i);
   ((Jugador *)casilla->value)->items++;
-  printf("\n* Ítem agregado con éxito\n");
 }
 //Elimina un Item del inventario del jugador ingresado.
 //Ademas de guardar en el historial lo eliminado, en caso de que se use la funcion deshacer
@@ -160,8 +160,11 @@ void eliminarItem(HashMap *map, char * nombre) {
         popCurrent(((Jugador *)casilla->value)->inventario);
         ((Jugador *)casilla->value)->items--;
         printf("\n* Ítem eliminado con éxito\n");
+        return;
       }
     }
+
+    printf("\n* No se encontró el ítem\n");
   }
 }
 
@@ -214,7 +217,7 @@ void mostrarJugadoresItemEsp(HashMap *map, List *nombres, char *nombre) {
     }
   }
   if (cont == 1) {
-    printf("\n* No se encontraron jugadores con ese item\n");
+    printf("\n* No se encontraron jugadores con este ítem\n");
   }
 }
 
