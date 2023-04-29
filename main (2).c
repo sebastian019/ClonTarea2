@@ -74,7 +74,7 @@ void mostrarPerfil(char *nombre, HashMap *map) {//Se encarga de Mostrar todos lo
   Pair *casilla = searchMap(map, nombre);
   
   if (casilla == NULL) {//Validacion de que existe el jugador
-    printf("El jugador ingresado no existe\n");
+    printf("\n* El jugador ingresado no existe\n");
     return;
   }
   else {
@@ -94,7 +94,7 @@ void agregarItem(HashMap *map, char *nombre, char *item) {
   Pair *casilla = searchMap(map, nombre);//Se realiza una busqueda del jugador ingresado.
   
   if (casilla == NULL) {
-    printf("El jugador ingresado no existe\n");
+    printf("\n* El jugador ingresado no existe\n");
     return;
   } 
   else {
@@ -131,7 +131,7 @@ void eliminarItem(HashMap *map, char * nombre) {
   Pair *casilla = searchMap(map, nombre);
   
   if (casilla == NULL) {
-    printf("El jugador ingresado no existe\n");
+    printf("\n* El jugador ingresado no existe\n");
     return;
   } 
   else {
@@ -214,7 +214,7 @@ void mostrarJugadoresItemEsp(HashMap *map, List *nombres, char *nombre) {
     }
   }
   if (cont == 1) {
-    printf("No se encontraron jugadores con ese item\n");
+    printf("\n* No se encontraron jugadores con ese item\n");
   }
 }
 
@@ -222,7 +222,7 @@ void deshacer(HashMap *map, char * nombre){
   Pair *casilla = searchMap(map, nombre);
   
   if (casilla == NULL) {
-    printf("El jugador ingresado no existe\n");
+    printf("\n* El jugador ingresado no existe\n");
     return;
   } 
   if (((Jugador *)casilla->value)->historial != NULL) {
@@ -230,10 +230,10 @@ void deshacer(HashMap *map, char * nombre){
     Jugador *historial = ((Jugador *)casilla->value)->historial; 
     memcpy(version_anterior, historial, sizeof(Jugador)); 
     casilla->value = version_anterior;
-    printf("* Última acción deshecha con éxito\n");
+    printf("\n* Última acción deshecha con éxito\n");
   }
   else {
-    printf("No hay acciones para deshacer\n");
+    printf("\n* No hay acciones para deshacer\n");
   }
 }
 
@@ -433,11 +433,11 @@ int main(){
 
       FILE *archivo = fopen(nombreArchivo,"rt");
       if (archivo == NULL) {
-        printf("* Error al abrir el archivo.\n");
+        printf("\n* Error al abrir el archivo.\n");
       } 
       else{
         importar(map, archivo,nombres);
-        printf("* Archivo importado con éxito\n");
+        printf("\n* Archivo importado con éxito\n");
       }
     }
     if (numIngresado == 9) {
@@ -446,10 +446,10 @@ int main(){
         scanf(" %[^\n]", nombreArchivo);
         FILE* archivo = fopen(nombreArchivo, "w");
         exportar(nombres,map, archivo);
-        printf("* Datos exportados con éxito\n");
+        printf("\n* Datos exportados con éxito\n");
       } 
       else {
-        printf("* No hay datos exportables\n");
+        printf("\n* No hay datos exportables\n");
       }
     }
   }
