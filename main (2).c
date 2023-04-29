@@ -293,15 +293,21 @@ fgets(linea, 1024, archivo); //Se lee la primera linea por separado ya que no se
 void exportar(List *nombres,HashMap *map,FILE *archivo){
   fprintf(archivo, "Nombre,Puntos,Cantidad de Items,Items\n");
   for (char *a = firstList(nombres); a != NULL; a = nextList(nombres)){
-    int key = hash(a, map->capacity);
-    fprintf(archivo, "%s,%u,%u", ((Jugador*)map->buckets[key]->value)->nombre,((Jugador*)map->buckets[key]->value)->puntos, ((Jugador*)map->buckets[key]->value)->items);
-    for (char *b = firstList(((Jugador *)map->buckets[key]->value)->inventario) ; b != NULL; b = nextList(((Jugador *)map->buckets[key]->value)->inventario)){
-      fprintf(archivo, ",%s", b);
-      if(nextList(((Jugador*)map->buckets[key]->value)->inventario) != NULL){
-        fprintf(archivo,", ");
-      }
-      else{
+    Pair *aux = searchMap(map,a);
+    fprintf(archivo, "%s,%u,%u,", ((Jugador*)aux->value)->nombre,((Jugador*)aux->value)->puntos, ((Jugador*)aux->value)->items);
+    
+    for (char *b = firstList(((Jugador *)aux->value)->inventario) ; b != NULL ; b = nextList(((Jugador *)aux->value)->inventario)){
+      fprintf(archivo,"%s", b);
+      
+      char *c = nextList(((Jugador*)aux->value)->inventario);
+      prevList(((Jugador*)aux->value)->inventario);
+      
+      if (c != NULL) {
+        fprintf(archivo, ",");
+      } 
+      else {
         fprintf(archivo, "\n");
+        break;
       }
     }
   }
