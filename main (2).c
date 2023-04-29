@@ -177,23 +177,23 @@ void agregarPuntos(HashMap *map, char * nombre) {
 }
 
 void mostrarJugadoresItemEsp(HashMap *map, List *nombres, char *nombre) {
-  int cont = 0;
+  int cont = 1;
 
   printf("Jugadores con el item %s: \n", nombre);
   for (char *a = firstList(nombres); a != NULL; a = nextList(nombres)) {
-    long key = hash(a, map->capacity);
-    for (char *b = firstList(((Jugador *)map->buckets[key]->value)->inventario);
-         b != NULL;
-         b = nextList(((Jugador *)map->buckets[key]->value)->inventario)) {
-      if (strcmp(b, nombre) == 0) {
-        printf("[ %s ]\n", a);
+    Pair *aux = searchMap(map, a);
+    
+    for (char *b = firstList(((Jugador *)aux->value)->inventario) ; b != NULL ; b = nextList(((Jugador *)aux->value)->inventario)){
+      if (strcmp(b, nombre) == 0){
+        printf("%d.[ %s ]\n",cont, a);
         cont++;
         break;
       }
     }
   }
-  if (cont == 0)
+  if (cont == 1) {
     printf("No se encontraron jugadores con ese item\n");
+  }
 }
 
 void deshacer(HashMap *map, char * nombre){
@@ -251,6 +251,18 @@ const char *get_csv_field (char * tmp, int k) {
     }
 
     return NULL;
+}
+
+void eliminarSOH(char* cadena) {
+  char* ptr = cadena;
+  
+  while (*ptr) {
+    if (*ptr == '\015') {
+        // Desplaza los caracteres a la izquierda
+        memmove(ptr, ptr + 1, strlen(ptr + 1) + 1);
+    } 
+    else ptr++;
+  }
 }
 
 void importar(HashMap *map,FILE *archivo,List *nombres){
@@ -318,6 +330,7 @@ int main(){
   HashMap *map = createMap(10000);
   char nombre[31];
   char item[31];
+  char nombreArchivo[31];
   List *nombres = createList();
   unsigned short numIngresado;
   int largoName;
