@@ -1,5 +1,5 @@
 SEBA´S ADVENTURE 64.
-El codigo principal se encuentra en el archivo "maintarea.c".
+El codigo principal se encuentra en el archivo "main.c".
 
 Como Ejecutar:
 Para ejecutar debera pegar el comando "gcc *.c -w -o main.exe && ./main.exe".
